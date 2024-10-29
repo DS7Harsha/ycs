@@ -1,0 +1,179 @@
+@font-face {
+    font-family: 'Eras Bold ITC';
+    src: url('ErasBoldITC.ttf') format('truetype'); /* Adjust the URL as needed */
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif; /* Clean and modern font */
+    margin: 0;
+    padding: 0;
+    color: #333;
+    line-height: 1.6;
+    background-color: #e9ecef; /* Light background */
+}
+
+header {
+    background-color: #f0f0f0; /* Dark gray header */
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline; /* Display items inline */
+    margin-right: 20px; /* Space between items */
+}
+
+nav a {
+    text-decoration: none;
+    color: #0000CD; /* Blue text */
+    font-weight: bold;
+    transition: color 0.3s; /* Transition for hover effect */
+}
+
+nav a:hover {
+    color: #ff6f61; /* Change color on hover */
+}
+
+
+nav .logo {
+    font-family: 'Roboto', sans-serif; /* Font style */
+    font-size: 48px; /* Logo font size */
+    color: #000000; /* Set logo color to black */
+    font-weight: bold; /* Make logo text bold */
+}
+
+
+.hero {
+    background-color: #007bff; /* Changed hero section background */
+    text-align: center;
+    padding: 100px 20px;
+    color: white;
+}
+
+.hero-image {
+    width: 60%;
+    max-width: 600px;
+    margin: 20px 0;
+    border-radius: 10px;
+}
+
+.cta-button {
+    background-color: #ff6f61; /* Button color */
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.cta-button:hover {
+    background-color: #e55c52; /* Darker button on hover */
+}
+
+.technologies {
+    background-color: #ffffff; /* White background */
+    padding: 30px 20px;
+    text-align: center;
+}
+
+.technologies h2 {
+    font-size: 2.5em; /* Increased heading font size */
+    margin-bottom: 10px;
+}
+
+.technologies p {
+    font-size: 1.2em;
+    margin-bottom: 30px;
+}
+
+.technology-items {
+    display: flex;
+    justify-content: space-around; /* Space items evenly */
+    flex-wrap: wrap; /* Wrap items on smaller screens */
+}
+
+.technology-item {
+    background-color: #f8f9fa; /* Light gray background for items */
+    border-radius: 8px;
+    padding: 20px;
+    margin: 10px;
+    flex: 1 1 30%; /* Flexible width, take up to 30% of the row */
+    max-width: 300px; /* Max width for each item */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    transition: transform 0.2s; /* Animation on hover */
+}
+
+.technology-item:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
+}
+
+.tech-icon {
+    width: 180px; /* Increased icon size */
+    height: auto; /* Maintain aspect ratio */
+}
+
+.contact-section {
+    background-color: #ffffff; /* Light background */
+    padding: 30px 20px;
+}
+
+.contact-section h2 {
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    margin: auto;
+}
+
+label {
+    margin: 10px 0 5px;
+}
+
+input, textarea {
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    padding: 10px;
+    background-color: #007bff; /* Match header color */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+footer {
+    color: #343a40; /* Dark gray text */
+    text-align: center;
+    padding: 10px;
+}
+
+footer {
+    background-color: #f0f0f0; /* Same background color as header */
+    padding: 20px; /* Add padding for consistency */
+    text-align: center; /* Center the footer text */
+    position: relative; /* Optional: Positioning if needed */
+}
+
