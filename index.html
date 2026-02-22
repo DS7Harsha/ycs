@@ -1,46 +1,865 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>Yata Global</title>
+    <meta name="description"
+        content="Yata Consulting Solutions - Expert IT Strategic consulting to drive growth and innovation.">
+    <title>Yata Consulting Solutions - IT Consulting & Digital Transformation</title>
+    <!-- Modern Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0a1128;
+            --secondary: #123068;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.4);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --bg-dark: #020617;
+            --bg-card: rgba(15, 23, 42, 0.6);
+            --border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            line-height: 1.6;
+            color: var(--text-main);
+            background-color: var(--bg-dark);
+            overflow-x: hidden;
+        }
+
+        /* Glass Header */
+        header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            background: rgba(2, 6, 23, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(to right, #ffffff, var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #ffffff;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Section Global */
+        section {
+            padding: 8rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-tag {
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        h2 {
+            font-size: 3rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Hero / Landing */
+        .landing-page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding-top: 5rem;
+            overflow: hidden;
+        }
+
+        .landing-bg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            background: radial-gradient(circle at center, var(--secondary) 0%, var(--bg-dark) 60%);
+            opacity: 0.6;
+        }
+
+        .glow-orb {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: var(--accent);
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.15;
+            top: -10%;
+            right: -5%;
+            animation: float 10s ease-in-out infinite alternate;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) scale(1);
+            }
+
+            100% {
+                transform: translateY(50px) scale(1.1);
+            }
+        }
+
+        .landing-content {
+            text-align: center;
+            max-width: 800px;
+            z-index: 1;
+        }
+
+        .landing-title {
+            font-size: 4.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #ffffff 0%, #94a3b8 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -1px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            animation-delay: 0.2s;
+        }
+
+        .landing-tagline {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            margin-bottom: 3rem;
+            font-weight: 400;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            animation-delay: 0.4s;
+        }
+
+        .cta-container {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            animation-delay: 0.6s;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border: none;
+            font-family: inherit;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: #fff;
+            box-shadow: 0 4px 20px var(--accent-glow);
+        }
+
+        .btn-primary:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px var(--accent-glow);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Services Grid */
+        .services {
+            background: transparent;
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 3rem 2rem;
+            border-radius: 24px;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            backdrop-filter: blur(10px);
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(800px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 255, 255, 0.06), transparent 40%);
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .service-card:hover::before {
+            opacity: 1;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .service-card p {
+            color: var(--text-muted);
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        /* About Section */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text p {
+            font-size: 1.125rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .about-text p strong {
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 2.5rem 2rem;
+            border-radius: 24px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #fff, var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--text-muted);
+            font-weight: 500;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Contact Section */
+        .contact {
+            position: relative;
+        }
+
+        .contact-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 4rem;
+            border-radius: 24px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            font-size: 0.95rem;
+            color: #e2e8f0;
+        }
+
+        input,
+        textarea,
+        select {
+            width: 100%;
+            padding: 1rem 1.2rem;
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            font-family: inherit;
+            font-size: 1rem;
+            color: #fff;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        select option {
+            background: var(--bg-dark);
+            color: #fff;
+        }
+
+        input:focus,
+        textarea:focus,
+        select:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .contact-container .btn-primary {
+            width: 100%;
+            padding: 1.2rem;
+            font-size: 1.1rem;
+            margin-top: 1rem;
+        }
+
+        .success-message {
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            color: #34d399;
+            padding: 1.2rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            text-align: center;
+            font-weight: 500;
+            display: none;
+            backdrop-filter: blur(5px);
+            animation: fadeUp 0.3s ease forwards;
+        }
+
+        /* Footer */
+        footer {
+            background: #000;
+            border-top: 1px solid var(--border-color);
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-info {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            color: var(--text-muted);
+            font-size: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-info a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-info a:hover {
+            color: var(--accent);
+        }
+
+        .copyright {
+            color: #64748b;
+            font-size: 0.9rem;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            width: 100%;
+        }
+
+        /* Animations & Utilities */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .landing-title {
+                font-size: 3.5rem;
+            }
+
+            .contact-container {
+                padding: 2.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                /* In a full app, we'd add a hamburger menu */
+            }
+
+            h2 {
+                font-size: 2.5rem;
+            }
+
+            .landing-title {
+                font-size: 2.8rem;
+            }
+
+            .landing-tagline {
+                font-size: 1.1rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
+
 <body>
-    <header>
+    <header id="header">
         <nav>
-            <div class="logo">Yata Global</div>
-            <ul>
+            <div class="logo">YCS</div>
+            <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
-                <li><a href="contact.html">Contact Us</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
     </header>
-    <main>
-        <section class="technologies">
-            <h2>Innovative Technologies</h2>
-            <p>Stay ahead of the curve with our cutting-edge solutions.</p>
-            <div class="technology-items">
-                <div class="technology-item">
-                    <img src="ai-icon.jpg" alt="AI Technology" class="tech-icon">
-                    <h3>Artificial Intelligence</h3>
-                    <p>Harness the power of AI to transform your business processes.</p>
+
+    <div id="home" class="landing-page">
+        <div class="landing-bg"></div>
+        <div class="glow-orb"></div>
+        <div class="landing-content">
+            <h1 class="landing-title">Engineering Digital Excellence</h1>
+            <p class="landing-tagline">Strategic technology consulting and sophisticated digital transformation driving
+                growth and innovation for visionary enterprises.</p>
+            <div class="cta-container">
+                <a href="#services" class="btn btn-outline">Explore Services</a>
+                <a href="#contact" class="btn btn-primary">Start a Project</a>
+            </div>
+        </div>
+    </div>
+
+    <section id="services" class="services">
+        <div class="section-header reveal">
+            <span class="section-tag">Expertise</span>
+            <h2>Our Services</h2>
+            <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto; font-size: 1.1rem;">Comprehensive
+                technological solutions tailored to elevate your operational efficiency and secure your digital
+                presence.</p>
+        </div>
+        <div class="service-grid">
+            <div class="service-card reveal">
+                <span class="service-icon">☁️</span>
+                <h3>Cloud Solutions</h3>
+                <p>Architect, migrate, and optimize your infrastructure on advanced cloud platforms. Unleash the power
+                    of AWS, Azure, and Google Cloud for unparalleled scalable performance.</p>
+            </div>
+            <div class="service-card reveal" style="transition-delay: 0.1s;">
+                <span class="service-icon">🛡️</span>
+                <h3>Cybersecurity</h3>
+                <p>Fortify your enterprise with comprehensive security paradigms. We provide continuous threat
+                    monitoring, zero-trust architectures, and robust compliance solutions.</p>
+            </div>
+            <div class="service-card reveal" style="transition-delay: 0.2s;">
+                <span class="service-icon">💡</span>
+                <h3>IT Strategy</h3>
+                <p>Align the technology roadmap with your core business objectives. Strategic planning, technology
+                    advisory, and digital transformation roadmaps to future-proof your organization.</p>
+            </div>
+            <div class="service-card reveal">
+                <span class="service-icon">⚙️</span>
+                <h3>Infrastructure Mgt.</h3>
+                <p>Guarantee operational resilience with continuous proactive 24/7 monitoring, robust maintenance, and
+                    intelligent optimization of complex IT environments.</p>
+            </div>
+            <div class="service-card reveal" style="transition-delay: 0.1s;">
+                <span class="service-icon">💻</span>
+                <h3>Software Eng.</h3>
+                <p>Bespoke application development and intricate system integrations executed with modern stacks to
+                    streamline workflows and captivate your user base.</p>
+            </div>
+            <div class="service-card reveal" style="transition-delay: 0.2s;">
+                <span class="service-icon">📊</span>
+                <h3>Data Analytics</h3>
+                <p>Harness the power of your data. Deploy sophisticated business intelligence, predictive analytics
+                    platforms, and intelligent decision-support systems.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="about-grid">
+            <div class="about-text reveal">
+                <span class="section-tag">Who we are</span>
+                <h2>About Yata Consulting Solutions</h2>
+                <p>We are a forward-thinking IT consulting firm born in the digital age, where visionary innovation
+                    meets precise execution. At <strong>Yata Consulting Solutions LLC</strong>, we believe technology
+                    should invariably empower enterprises.</p>
+                <p>By blending deep technical expertise with strategic business acumen, we deliver solutions that are
+                    not only cutting-edge but immediately practical. We don't just act as consultants; we establish
+                    ourselves as your dedicated technology partners, intricately mapping our services to your
+                    overarching ambitions.</p>
+                <a href="#contact" class="btn btn-outline" style="margin-top: 1.5rem;">Partner With Us</a>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-card reveal">
+                    <div class="stat-number">100<span style="font-size: 2rem;">%</span></div>
+                    <div class="stat-label">Client Focus</div>
                 </div>
-                <div class="technology-item">
-                    <img src="cloud-icon.jpg" alt="Cloud Computing" class="tech-icon">
-                    <h3>Cloud Computing</h3>
-                    <p>Scale your operations efficiently with cloud-based solutions.</p>
+                <div class="stat-card reveal" style="transition-delay: 0.1s;">
+                    <div class="stat-number">24<span style="font-size: 2rem;">/7</span></div>
+                    <div class="stat-label">Proactive Support</div>
                 </div>
-                <div class="technology-item">
-                    <img src="data-analytics-icon.jpg" alt="Data Analytics" class="tech-icon">
-                    <h3>Data Analytics</h3>
-                    <p>Make informed decisions with actionable insights from your data.</p>
+                <div class="stat-card reveal"
+                    style="grid-column: span 2; display: flex; flex-direction: column; justify-content: center;">
+                    <div class="stat-number" style="font-size: 4rem;">∞</div>
+                    <div class="stat-label">Innovation Driven</div>
                 </div>
             </div>
-        </section>
-    </main>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="section-header reveal">
+            <span class="section-tag">Collaborate</span>
+            <h2>Get In Touch</h2>
+            <p style="color: var(--text-muted);">Transform your technological landscape. Reach out today.</p>
+        </div>
+        <div class="contact-container reveal">
+            <div class="success-message" id="successMessage">
+                Processing your request... opening default email client. Check your mail application!
+            </div>
+            <form id="contactForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="name">Full Name *</label>
+                        <input type="text" id="name" name="name" placeholder="John Doe" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" placeholder="john@company.com" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="company">Company</label>
+                        <input type="text" id="company" name="company" placeholder="Acme Inc.">
+                    </div>
+                    <div class="form-group">
+                        <label for="service">Service Interest</label>
+                        <select id="service" name="service">
+                            <option value="General Inquiry">General Inquiry</option>
+                            <option value="Cloud Solutions">Cloud Solutions</option>
+                            <option value="Cybersecurity">Cybersecurity</option>
+                            <option value="IT Strategy">IT Strategy</option>
+                            <option value="Infrastructure Management">Infrastructure Management</option>
+                            <option value="Software Development">Software Development</option>
+                            <option value="Data Analytics">Data Analytics</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message *</label>
+                    <textarea id="message" name="message" placeholder="Tell us about your project or challenges..."
+                        required></textarea>
+                </div>
+                <!-- Adding target="_blank" ensures it opens in new tab/native app cleanly if possible -->
+                <button type="submit" class="btn btn-primary">Submit Inquiry via Email</button>
+            </form>
+        </div>
+    </section>
+
     <footer>
-        <p>© 2025 Yata Global. All rights reserved.</p>
+        <div class="footer-content">
+            <div class="footer-logo">YCS</div>
+            <div class="footer-info">
+                <span><a href="mailto:hr@yataglobal.com">hr@yataglobal.com</a></span>
+                <span style="color: rgba(255,255,255,0.2);">|</span>
+                <span>(609) 613-6257</span>
+            </div>
+            <div class="copyright">
+                &copy; <span id="year"></span> Yata Consulting Solutions LLC. All rights reserved.
+            </div>
+        </div>
     </footer>
+
+    <script>
+        // Set dynamic year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.style.background = 'rgba(2, 6, 23, 0.9)';
+                header.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.5)';
+            } else {
+                header.style.background = 'rgba(2, 6, 23, 0.7)';
+                header.style.boxShadow = 'none';
+            }
+        });
+
+        // Mouse glow effect for service cards
+        const cards = document.querySelectorAll('.service-card');
+        cards.forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+            });
+        });
+
+        // Scroll Reveal Animation (Intersection Observer)
+        const revealElements = document.querySelectorAll('.reveal');
+
+        const revealCallback = function (entries, observer) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        };
+
+        const revealOptions = {
+            threshold: 0.15,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const revealObserver = new IntersectionObserver(revealCallback, revealOptions);
+
+        revealElements.forEach(element => {
+            revealObserver.observe(element);
+        });
+
+        // Form submission via mailto link
+        document.getElementById('contactForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const company = document.getElementById('company').value || 'Not provided';
+            const service = document.getElementById('service').value;
+            const message = document.getElementById('message').value;
+
+            const subject = encodeURIComponent(`New Inquiry from ${name}: ${service}`);
+
+            let bodyText = `Name: ${name}\n`;
+            bodyText += `Email: ${email}\n`;
+            bodyText += `Company: ${company}\n`;
+            bodyText += `Interest: ${service}\n\n`;
+            bodyText += `Message:\n${message}\n`;
+
+            const body = encodeURIComponent(bodyText);
+
+            const mailtoLink = `mailto:hr@yataglobal.com?subject=${subject}&body=${body}`;
+
+            // Show success/action message
+            const successMsg = document.getElementById('successMessage');
+            successMsg.style.display = 'block';
+
+            // Open default email client
+            window.location.href = mailtoLink;
+
+            // Revert message after few seconds
+            setTimeout(() => {
+                successMsg.style.display = 'none';
+                document.getElementById('contactForm').reset();
+            }, 6000);
+        });
+    </script>
 </body>
+
 </html>
